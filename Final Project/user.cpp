@@ -1,5 +1,5 @@
 #include "user.h"
-//#include "post.h"
+#include "post.h"
 //#include "page.h"
 #include<cstring>
 #include<iostream>
@@ -23,8 +23,7 @@ User::User() {
 	pagesLiked = new Page * [MAX_PAGES]; // max pages liked
 }
 
-User::User(int id, const char* name) {
-	this->id = id;
+User::User(int id, const char* name) : Object(id) {
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 
