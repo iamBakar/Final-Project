@@ -1,10 +1,15 @@
 #include "date.h"
+#include<iostream>
+
+using namespace std;
 
 date:: date(): day(1),month(1),year(2000){}
 
 date::date(int d, int m, int y): day(d), month(m), year(y){}
 
-int date::getday() const { return day; }
+int date::getday() const { 
+	return day;
+}
 int date::getmonth() const { return month; }
 int date::getyear() const { return year; }
 

@@ -123,11 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="activity.h" />
+    <ClInclude Include="comment.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="post.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="activity.cpp" />
+    <ClCompile Include="comment.cpp" />
+    <ClCompile Include="memory.cpp" />
+    <ClCompile Include="memory.h" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="post.cpp" />
     <ClCompile Include="user.cpp" />

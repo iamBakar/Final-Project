@@ -14,6 +14,7 @@ protected:
 	char* text; // for description
 	date shareDay; // date the post was shared
 	Object** likedBy; // making object as likes can come from user or pages
+	Object* sharedBy;
 
 	Post** likes;
 	int likeCount;
@@ -26,7 +27,7 @@ protected:
 public:
 	Post();
 	
-	Post(int id, char* text, date& shareDay);
+	Post(int id, Object* sharedBy, char* text, date& shareDay);
 
 	void addLike(Object* obj);
 
@@ -40,9 +41,7 @@ public:
 
 	virtual ~Post();
 
-	bool iswithin24hours(const date& systemdate) const;
-	bool issamedayandmonth(const date& other) const;
-	int yeardifference(const date& other) const;
+	bool iswithin24hours(const date& systemdate) const; // as we only need posts of last 24 hrs
 	
 	const date& getSharedDay();
 };

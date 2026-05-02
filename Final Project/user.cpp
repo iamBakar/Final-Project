@@ -83,6 +83,7 @@ void User::viewProfile() const {
 	}
 
 	for (int i = 0; i < postCount; i++) {
-		//cout << posts[i]->display() << endl; // polymorphism 
+		posts[i]->display(); // polymorphism 
+		cout << endl;
 	}
 }
