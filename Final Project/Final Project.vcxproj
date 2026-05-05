@@ -135,7 +135,10 @@
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="memory.h" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="page.cpp" />
+    <ClCompile Include="page.h" />
     <ClCompile Include="post.cpp" />
+    <ClCompile Include="socialNetworkApp.h" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

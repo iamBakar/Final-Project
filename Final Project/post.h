@@ -16,7 +16,6 @@ protected:
 	Object** likedBy; // making object as likes can come from user or pages
 	Object* sharedBy;
 
-	Post** likes;
 	int likeCount;
 
 	Comment** comment;
@@ -29,15 +28,11 @@ public:
 	
 	Post(int id, Object* sharedBy, char* text, date& shareDay);
 
-	void addLike(Object* obj);
-
 	void addComment(Comment* comment);
 
 	virtual void display() const;
 
 	void addLike(Object* likedBy);
-
-	void addComment(Comment* comment);
 
 	virtual ~Post();
 
