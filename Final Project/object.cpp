@@ -1,15 +1,19 @@
 #include "object.h"
+#include<cstring>
 
 Object::Object() {
-	id = 0;
+	id = nullptr;
 }
 
-Object::Object(int id) : id(id) {}
+Object::Object(const char* id) {
+	this->id = new char[strlen(id) + 1];
+	strcpy(this->id, id);
+}
 
-int Object::getID() const {
+const char* Object::getID() const {
 	return id;
 }
 
 Object::~Object() {
-
+	delete[] id;
 }

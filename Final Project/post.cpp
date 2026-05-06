@@ -25,7 +25,10 @@ Post::Post() {
 	sharedBy = nullptr;
 }
 
-Post::Post(int id, Object* sharedBy, char* text, date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
+Post::Post(const char* id, Object* sharedBy, char* text, date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
+	this->id = new char[strlen(id) + 1];
+	strcpy(this->id, id);
+
 	this->text = new char[strlen(text) + 1];
 	strcpy(this->text, text);
 

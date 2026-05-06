@@ -23,7 +23,10 @@ User::User() {
 	pagesLiked = new Page * [MAX_PAGES]; // max pages liked
 }
 
-User::User(int id, const char* name) : Object(id) {
+User::User(const char* id, const char* name) {
+	this->id = new char[strlen(id) + 1];
+	strcpy(this->id, id);
+
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 

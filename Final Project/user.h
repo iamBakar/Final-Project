@@ -25,7 +25,7 @@ private:
 public:
 	User();
 
-	User(int id, const char* name);
+	User(const char* id, const char* name);
 
 	~User();
 

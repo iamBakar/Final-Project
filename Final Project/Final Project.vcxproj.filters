@@ -62,5 +62,8 @@
     <ClCompile Include="socialNetworkApp.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="socialNetworkApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

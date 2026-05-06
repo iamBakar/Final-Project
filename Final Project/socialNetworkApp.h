@@ -23,14 +23,23 @@ protected:
 	date systemdate;
 	
 public:
+	void run(); // to run the project 
+
 	SocialNetworkApp();
 	~SocialNetworkApp();
 
-	void setCurrentUser();
+	void setCurrentUser(const char* userID);
 	void setSystemDate(int d, int m, int y);
 
 
+	User* userByID(const char* id) const;
+	Page* pageByID(const char* id) const;
+	Post* postByID(const char* id) const;
 
+
+	void viewHome() const;
+	void viewTimeline() const; // is diff from page one as it locates a certain page by id and then displays it 
+	void viewPage(const char* pageID) const;
 
 };
 

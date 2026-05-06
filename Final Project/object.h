@@ -3,14 +3,14 @@
 
 class Object {
 protected:
-	int id; // only child classes can access it 
+	char* id; // only child classes can access it 
 
 public:
 	Object();
 
-	Object(int id);
+	Object(const char* id);
 
-	int getID() const;
+	const char* getID() const;
 
 	virtual const char* getName() const = 0;
 

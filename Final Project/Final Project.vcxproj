@@ -138,6 +138,7 @@
     <ClCompile Include="page.cpp" />
     <ClCompile Include="page.h" />
     <ClCompile Include="post.cpp" />
+    <ClCompile Include="socialNetworkApp.cpp" />
     <ClCompile Include="socialNetworkApp.h" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
