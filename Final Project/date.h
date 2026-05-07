@@ -23,6 +23,6 @@ public:
 	int yeardifference(const date& other) const;
 
 	void print() const;
+};
 
 #endif
-};

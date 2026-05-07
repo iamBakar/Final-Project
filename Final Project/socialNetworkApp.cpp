@@ -63,3 +63,54 @@ User* SocialNetworkApp::userByID(const char* id) const {
 	}
 }
 
+Post* SocialNetworkApp::postByID(const char* id) const {
+	for (int i = 0; i < postCount; i++) {
+		if (strcmp(posts[i]->getID(), id) == 0) {
+			return posts[i];
+		}
+		return nullptr;
+	}
+}
+
+Page* SocialNetworkApp::pageByID(const char* id) const {
+	for (int i = 0; i < pageCount; i++) {
+		if (strcmp(pages[i]->getID(), id) == 0) {
+			return pages[i];
+		}
+		return nullptr;
+	}
+}
+
+void SocialNetworkApp::viewPage(const char* pageID) const {
+	Page* page = pageByID(pageID);
+	if (page != nullptr) {
+		page->viewTimeline();
+	}
+	else {
+		cout << "Page not found!" << endl;
+		return;
+	}
+}
+
+void SocialNetworkApp::viewTimeline() const{
+	if (currentUser != nullptr) { // we alr have a currentuser as found above 
+		cout << currentUser->getName() << " - Timeline" << endl;
+		currentUser->viewProfile();
+	}
+	else {
+		cout << "No current user!" << endl;
+		return;
+	}
+}
+
+void SocialNetworkApp::viewHome() const {
+	if (currentUser == nullptr)
+	{
+		cout << "No current user set." << endl;
+		return;
+	}
+
+	cout << currentUser->getName() << " - Home Page" << endl;
+
+
+}
