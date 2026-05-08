@@ -17,7 +17,7 @@ Page::Page() {
 	postCount = 0;
 }
 
-Page::Page(const char* id, char* title, User* owner) : owner(owner) {
+Page::Page(const char* id, const char* title, User* owner) : owner(owner) {
 	this->id = new char[strlen(id) + 1];
 	strcpy(this->id, id);
 

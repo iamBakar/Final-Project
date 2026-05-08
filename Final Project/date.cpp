@@ -13,7 +13,7 @@ int date::getday() const {
 int date::getmonth() const { return month; }
 int date::getyear() const { return year; }
 
-void date::print() const { cout << day << "/" << month << "/" << year << endl; }
+void date::print() const { cout << day << "/" << month << "/" << year; }
 
 bool date::iswithin24hours(const date& systemdate) const {
 	if (year != systemdate.year || month != systemdate.month)return false;

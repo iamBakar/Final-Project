@@ -12,14 +12,98 @@
 
 
 using namespace std;
+
+// asked ai to make run according to the sample output 
+
 void SocialNetworkApp::run()
 {
-
 	loadPages("Pages.txt");
 	loadUsers("Users.txt");
 	loadPosts("Posts.txt");
 	loadComments("Comments.txt");
 
+	// ✅ 2. Set system date
+	setSystemDate(15, 11, 2017);
+
+	// ✅ 3. Set current user
+	setCurrentUser("u7");
+
+	if (currentUser == nullptr)
+	{
+		cout << "Program terminated.\n";
+		return;  
+	}
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View friend list (recommended test)
+	cout << "Command: View Friend List\n";
+	currentUser->viewFriendList();
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View Home
+	cout << "Command: View Home\n";
+	viewHome();
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View Timeline (profile)
+	cout << "Command: View Timeline\n";
+	viewTimeline();
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View Page
+	cout << "Command: View Page (p1)\n";
+	viewPage("p1");
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View specific post
+	cout << "Command: View Post (post4)\n";
+	viewPost("post4");
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ View liked list
+	cout << "Command: View Liked List (post5)\n";
+	viewLikedList("post5");
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ Like a post
+	cout << "Command: Like Post (post5)\n";
+	likePost("post5");
+
+	// show updated likes
+	viewLikedList("post5");
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ Comment on post
+	cout << "Command: Post Comment\n";
+	postComment("post4", "Good Luck for your Result");
+
+	// verify comment
+	viewPost("post4");
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ See Memories
+	cout << "Command: See Your Memories\n";
+	seeYourMemories();
+
+	cout << "\n--------------------------------------------------\n";
+
+	// ✅ Share Memory
+	cout << "Command: Share Memory\n";
+	shareMemory("post10", "Never thought I will be specialist in this field...");
+
+	// ✅ Show updated timeline with memory
+	viewTimeline();
+
+	cout << "\n--------------------------------------------------\n";
 }
 
 SocialNetworkApp::SocialNetworkApp() {
@@ -63,8 +147,10 @@ void SocialNetworkApp::setCurrentUser(const char* userID) { // #1
 }
 
 void SocialNetworkApp::setSystemDate(int d, int m, int y) {
+	cout << "Command: Set current System Date ";
 	systemdate = date(d, m, y);
-	cout << "Date set" << endl;
+	cout << d << " " << m << " " << y << " " << endl;
+	cout << "System Date: " << d << "/" << m << "/" << y << "/" << endl;
 }
 
 User* SocialNetworkApp::userByID(const char* id) const {
@@ -188,8 +274,6 @@ void SocialNetworkApp::viewLikedList(const char* postID) const
 		return;
 	}
 
-	cout << "Post Liked By:" << endl;
-
 	Object** likedBy = post->getLiker();  
 	int count = post->getLikeCount(); 
 
@@ -268,16 +352,14 @@ void SocialNetworkApp::seeYourMemories() const
 
 void SocialNetworkApp::shareMemory(const char* postID, const char* text)
 {
-	if (currentUser == nullptr)
-	{
+	if (currentUser == nullptr) {
 		cout << "No current user set." << endl;
 		return;
 	}
 
 	Post* original = postByID(postID);
 
-	if (original == nullptr)
-	{
+	if (original == nullptr) {
 		cout << "Post not found." << endl;
 		return;
 	}
@@ -303,6 +385,14 @@ void SocialNetworkApp::shareMemory(const char* postID, const char* text)
 void SocialNetworkApp::loadPages(const char* filename)
 {
 	ifstream file(filename);
+
+	if (!file.is_open())
+	{
+		cout << "File not opening!\n";
+	}
+	else {
+		cout << "pages.txt File opened!" << endl;
+	}
 
 	file >> pageCount;
 	file.ignore();
@@ -330,7 +420,21 @@ void SocialNetworkApp::loadUsers(const char* filename)
 {
 	ifstream file(filename);
 
+	if (!file.is_open()) {
+		cout << "FAILED to open Users.txt\n";
+	}
+	else {
+		cout << "Users.txt opened successfully\n";
+	}
+
 	file >> userCount;
+
+	/*if (file.fail())
+	{
+		cout << "Reading userCount failed!\n";
+	}*/
+
+	file.ignore(1000, '\n');
 	users = new User * [userCount];
 
 	// ✅ PASS 1: CREATE USERS
@@ -348,20 +452,12 @@ void SocialNetworkApp::loadUsers(const char* filename)
 
 		users[i] = new User(id, fullName);
 
-		// ✅ skip rest of line (friends + pages for now)
-		char temp[20];
-		file >> temp;
-		while (strcmp(temp, "-1") != 0)
-			file >> temp;
-
-		file >> temp;
-		while (strcmp(temp, "-1") != 0)
-			file >> temp;
+		file.ignore(1000, '\n');
 	}
 
 	file.close();
 
-	// ✅ PASS 2: LINK FRIENDS + PAGES
+	// PASS 2: LINK FRIENDS + PAGES
 	file.open(filename);
 	file >> userCount;
 
@@ -372,15 +468,15 @@ void SocialNetworkApp::loadUsers(const char* filename)
 		file >> id;
 		file >> firstName >> lastName;
 
-		// ✅ FRIENDS
 		char temp[20];
-		file >> temp;
 
+		// ✅ FRIENDS
+		file >> temp;
 		while (strcmp(temp, "-1") != 0)
 		{
-			User* friendUser = userByID(temp);
-			if (friendUser != nullptr)
-				users[i]->addFriend(friendUser);
+			User* f = userByID(temp);
+			if (f != nullptr)
+				users[i]->addFriend(f);
 
 			file >> temp;
 		}
@@ -389,19 +485,27 @@ void SocialNetworkApp::loadUsers(const char* filename)
 		file >> temp;
 		while (strcmp(temp, "-1") != 0)
 		{
-			Page* page = pageByID(temp);
-			if (page != nullptr)
-				users[i]->likePage(page);
+			Page* p = pageByID(temp);
+			if (p != nullptr)
+				users[i]->likePage(p);
 
 			file >> temp;
 		}
 	}
-
 	file.close();
 }
+
 void SocialNetworkApp::loadPosts(const char* filename)
 {
 	ifstream file(filename);
+
+	if (!file.is_open()) {
+		cout << "File not opening!\n";
+		return;
+	}
+	else {
+		cout << "posts.txt file opened!" << endl;
+	}
 
 	file >> postCount;
 	posts = new Post * [postCount];
@@ -490,6 +594,14 @@ void SocialNetworkApp::loadPosts(const char* filename)
 void SocialNetworkApp::loadComments(const char* filename)
 {
 	ifstream file(filename);
+
+	if (!file.is_open()) {
+		cout << "File not opening!\n";
+		return;
+	}
+	else {
+		cout << "comments.txt file opened!" << endl;
+	}
 
 	int commentCount;
 	file >> commentCount;

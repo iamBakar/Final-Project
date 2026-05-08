@@ -27,7 +27,7 @@ Post::Post() {
 	sharedBy = nullptr;
 }
 
-Post::Post(const char* id, Object* sharedBy, const char* text, date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
+Post::Post(const char* id, Object* sharedBy, const char* text, const date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
 	this->id = new char[strlen(id) + 1];
 	strcpy(this->id, id);
 
@@ -81,18 +81,22 @@ const char* Post::getName() const {
 }
 
 void Post::display() const { // for one post basic structure 
-	cout << "ID: " << id;
-	cout << "Text: " << text;
 
-
-	cout << "Shared on: ";
-	shareDay.print();
-
-	cout << sharedBy->getName();
-
-	if (activity != nullptr)
+	if (sharedBy != nullptr)
 	{
-		activity->display();
+		cout << sharedBy->getName();
+
+		if (activity != nullptr)
+		{
+			activity->display();
+			cout << endl;
+			cout << "\"" << text << "\"" << endl;
+		}
+		else
+		{
+			cout << " wrote: ";
+			cout << "\"" << text << "\"" << endl;
+		}
 	}
 
 	cout << "Likes: " << likeCount << endl;

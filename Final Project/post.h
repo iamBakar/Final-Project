@@ -26,7 +26,7 @@ protected:
 public:
 	Post();
 	
-	Post(const char* id, Object* sharedBy, const char* text, date& shareDay);
+	Post(const char* id, Object* sharedBy, const char* text, const date& shareDay);
 
 	void addComment(Comment* comment);
 

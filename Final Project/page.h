@@ -15,7 +15,7 @@ protected:
 public:
 	Page();
 
-	Page(const char* id, char* title, User* owner);
+	Page(const char* id, const char* title, User* owner);
 
 	~Page();
 

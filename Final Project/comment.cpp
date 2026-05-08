@@ -22,5 +22,5 @@ Comment::~Comment() {
 }
 
 void Comment::display() const {
-	cout << whoCommented->getID() << " commented " << text << endl;
+	cout << whoCommented->getName() << " commented " << text << endl;
 }
