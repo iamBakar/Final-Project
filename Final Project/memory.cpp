@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Memory::Memory(const char* id, Object* sharedBy, char* text, date& shareDay, Post* originalPost) : Post(id, sharedBy, text, shareDay), originalPost(originalPost){}
+Memory::Memory(const char* id, Object* sharedBy, const char* text, date& shareDay, Post* originalPost) : Post(id, sharedBy, text, shareDay), originalPost(originalPost){}
 
 void Memory::display() const {
     cout << sharedBy->getName() << " shared a memory" << endl;

@@ -41,6 +41,17 @@ public:
 	void addPost(Post* post); // since user has posts there should be a method to add more
 	void viewProfile() const; 
 
+
+	User** getFriends() const;
+	int getFriendCount() const;
+
+	Page** getLikedPages() const;
+	int getLikedPageCount() const;
+
+	Post** getPosts() const; // for posts of user 
+	int getPostCount() const;
+
+	void addFriend(User* user);
 };
 
 #endif

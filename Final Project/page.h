@@ -24,6 +24,9 @@ public:
 
 	void addPost(Post* post);
 	void viewTimeline() const;
+
+	Post** getPosts() const; // to get posts access of a page
+	int getPostCount() const;
 };
 
 #endif

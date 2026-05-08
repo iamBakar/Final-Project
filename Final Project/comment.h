@@ -4,7 +4,7 @@
 
 class Object;
 
-class Comment : public Object {
+class Comment {
 protected:
 	char* text;
 	Object* whoCommented; // tells either user or post 

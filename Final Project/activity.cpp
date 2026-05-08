@@ -1,6 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "activity.h"
 #include "user.h"
 #include <iostream>
+
 
 using namespace std;
 

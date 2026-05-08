@@ -7,7 +7,7 @@ protected:
 	Post* originalPost; // ppointer to old post
 
 public:
-	Memory(const char* id, Object* sharedBy, char* text, date& shareDay, Post* originalPost);
+	Memory(const char* id, Object* sharedBy, const char* text, date& shareDay, Post* originalPost);
 
 	void display() const;
 };

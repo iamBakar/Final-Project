@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "post.h"
 #include<iostream>
 #include "object.h"
@@ -5,7 +6,7 @@
 #include "activity.h"
 #include "user.h"
 #include "date.h"
-//#include "page.h"
+#include "page.h"
 
 using namespace std;
 
@@ -13,8 +14,9 @@ const int MAX_LIKES = 10;
 const int MAX_COMMENTS = 10;
 
 Post::Post() {
-	id = 0;
+	id = nullptr;
 	text = nullptr;
+	activity = nullptr;
 
 	likedBy = new Object * [MAX_LIKES];
 	comment = new Comment * [MAX_COMMENTS];
@@ -25,7 +27,7 @@ Post::Post() {
 	sharedBy = nullptr;
 }
 
-Post::Post(const char* id, Object* sharedBy, char* text, date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
+Post::Post(const char* id, Object* sharedBy, const char* text, date& shareDay) : Object(id), sharedBy(sharedBy), shareDay(shareDay) {
 	this->id = new char[strlen(id) + 1];
 	strcpy(this->id, id);
 
@@ -37,6 +39,8 @@ Post::Post(const char* id, Object* sharedBy, char* text, date& shareDay) : Objec
 
 	likeCount = 0;
 	commentCount = 0;
+
+	activity = nullptr;
 }
 
 Post::~Post() {
@@ -71,6 +75,11 @@ bool Post::iswithin24hours(const date& systemdate) const { //systemdate is basic
 	return shareDay.iswithin24hours(systemdate);
 }
 
+
+const char* Post::getName() const {
+	return sharedBy->getName();
+}
+
 void Post::display() const { // for one post basic structure 
 	cout << "ID: " << id;
 	cout << "Text: " << text;
@@ -98,6 +107,18 @@ void Post::display() const { // for one post basic structure
 	else {
 		cout << "No comments to display\n";
 	}
-
 }
+
+Object** Post::getLiker() const {
+	return likedBy;
+}
+
+int Post::getLikeCount() const {
+	return likeCount;
+}
+
+void Post::setActivity(Activity* act) {
+	activity = act;
+}
+
 

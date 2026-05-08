@@ -40,6 +40,18 @@ public:
 	void viewHome() const;
 	void viewTimeline() const; // is diff from page one as it locates a certain page by id and then displays it 
 	void viewPage(const char* pageID) const;
+	void likePost(const char* postID);
+	void viewLikedList(const char* postID) const;
+	void postComment(const char* postID, const char* text);
+	void viewPost(const char* postID) const;
+	void seeYourMemories() const;
+	void shareMemory(const char* postID, const char* text);
+
+
+	void loadPages(const char* filename);
+	void loadUsers(const char* filename);
+	void loadPosts(const char* filename);
+	void loadComments(const char* filename);
 
 };
 

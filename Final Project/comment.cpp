@@ -1,7 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "comment.h"
 #include "object.h"
 #include<iostream>
 #include<cstring>
+
 
 using namespace std;
 

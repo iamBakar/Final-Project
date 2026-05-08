@@ -26,7 +26,7 @@ protected:
 public:
 	Post();
 	
-	Post(const char* id, Object* sharedBy, char* text, date& shareDay);
+	Post(const char* id, Object* sharedBy, const char* text, date& shareDay);
 
 	void addComment(Comment* comment);
 
@@ -39,6 +39,13 @@ public:
 	bool iswithin24hours(const date& systemdate) const; // as we only need posts of last 24 hrs
 	
 	const date& getSharedDay();
+
+	Object** getLiker() const;
+	int getLikeCount() const;
+
+	const char* getName() const;
+
+	void setActivity(Activity* act);
 };
 
 #endif

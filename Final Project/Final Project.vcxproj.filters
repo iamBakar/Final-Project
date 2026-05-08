@@ -30,6 +30,9 @@
     <ClInclude Include="activity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="object.cpp">
@@ -63,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="socialNetworkApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

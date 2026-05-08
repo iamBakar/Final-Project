@@ -1,5 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "object.h"
 #include<cstring>
+
 
 Object::Object() {
 	id = nullptr;

@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "page.h"
 #include "user.h"
 #include "post.h"
@@ -8,7 +9,7 @@ using namespace std;
 const int MAX_POSTS = 10;
 
 Page::Page() {
-	id = 0;
+	id = nullptr;
 	title = nullptr;
 	owner = nullptr;
 
@@ -54,4 +55,12 @@ void Page::viewTimeline() const {
 			posts[i]->display();
 		}
 	}
+}
+
+Post** Page::getPosts() const {
+	return posts;
+}
+
+int Page::getPostCount() const {
+	return postCount;
 }

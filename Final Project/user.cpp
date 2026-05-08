@@ -1,8 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "user.h"
 #include "post.h"
-//#include "page.h"
+#include "page.h"
 #include<cstring>
 #include<iostream>
+
 
 using namespace std;
 
@@ -89,4 +91,42 @@ void User::viewProfile() const {
 		posts[i]->display(); // polymorphism 
 		cout << endl;
 	}
+}
+
+
+void User::addFriend(User* user)
+{
+	if (friendsCount < MAX_FRIENDS)
+	{
+		friends[friendsCount++] = user;
+	}
+}
+
+
+User** User::getFriends() const {
+	return friends;
+}
+
+
+int User::getFriendCount() const
+{
+	return friendsCount;
+}
+
+Page** User::getLikedPages() const
+{
+	return pagesLiked;
+}
+
+int User::getLikedPageCount() const
+{
+	return likedPagesCount;
+}
+
+Post** User::getPosts() const {
+	return posts;
+}
+
+int User::getPostCount() const {
+	return postCount;
 }
